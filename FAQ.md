@@ -23,7 +23,7 @@ Complete answers to common questions about Polymarket MCP Server.
 
 ### Q: What is Polymarket MCP Server?
 
-A: Polymarket MCP Server is an integration that enables Claude (Anthropic's AI assistant) to autonomously trade, analyze, and manage positions on Polymarket prediction markets. It provides 45 comprehensive tools across market discovery, analysis, trading, portfolio management, and real-time monitoring.
+A: Polymarket MCP Server is an integration that enables Claude (Anthropic's AI assistant) to autonomously trade, analyze, and manage positions on Polymarket prediction markets. It provides 49 comprehensive tools across market discovery, analysis, trading, portfolio management, and real-time monitoring.
 
 ---
 

@@ -32,6 +32,7 @@ from .discover import (
 )
 from .tools import (
     TradingTools,
+    combo,
     get_tool_definitions,
     market_analysis,
     market_discovery,
@@ -427,6 +428,8 @@ async def list_tools() -> list[types.Tool]:
     # Always available - public APIs (no auth needed)
     tools.extend(market_discovery.get_tools())
     tools.extend(market_analysis.get_tools())
+    # BrickHouse: public Combo catalog tools (always available - public API, no auth)
+    tools.extend(combo.get_tools())
 
     # Only available with API credentials
     has_credentials = polymarket_client and polymarket_client.has_api_credentials()
@@ -566,6 +569,11 @@ async def call_tool(name: str, arguments: Dict[str, Any]) -> list[types.TextCont
                     "get_event_markets", "get_featured_markets", "get_closing_soon_markets",
                     "get_sports_markets", "get_crypto_markets"]:
             return await market_discovery.handle_tool(name, arguments)
+
+        # Route to Combo discovery tools (BrickHouse - public catalog, no auth)
+        elif name in ["get_combo_markets", "get_combo_market_details",
+                      "validate_combo_legs", "analyze_combo"]:
+            return await combo.handle_tool(name, arguments)
 
         # Route to market analysis tools
         elif name in ["get_market_details", "get_current_price", "get_orderbook", "get_spread",
@@ -741,10 +749,10 @@ async def initialize_server() -> None:
         # Report available tools based on authentication
         if polymarket_client.has_api_credentials():
             logger.info("Mode: FULL (authenticated)")
-            logger.info("Available tools: 45 total (8 Discovery, 10 Analysis, 12 Trading, 8 Portfolio, 7 Real-time)")
+            logger.info("Available tools: 49 total (8 Discovery, 10 Analysis, 12 Trading, 8 Portfolio, 7 Real-time, 4 Combo)")
         else:
             logger.info("Mode: READ-ONLY (no API credentials)")
-            logger.info("Available tools: 25 total (8 Discovery, 10 Analysis, 7 Real-time)")
+            logger.info("Available tools: 29 total (8 Discovery, 10 Analysis, 7 Real-time, 4 Combo)")
             logger.info("Trading and Portfolio tools require API credentials")
 
     except Exception as e:

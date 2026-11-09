@@ -2,7 +2,7 @@
 
 ## Complete Tool Inventory
 
-The server exposes **45 tools** across five families:
+The server exposes **49 tools** across six families:
 
 | Family | Tools | Credentials required |
 | ------ | ----- | -------------------- |
@@ -11,6 +11,7 @@ The server exposes **45 tools** across five families:
 | Trading | 12 | Yes (L2 auth) |
 | Portfolio Management | 8 | Yes (API credentials) |
 | Real-time WebSocket | 7 | Partial (user feeds need auth) |
+| Combo Discovery (BrickHouse) | 4 | No (public API) |
 
 **Scope note**: this reference documents the Market Discovery and Market
 Analysis families in detail and lists the Trading tools by name (see the
@@ -564,3 +565,19 @@ if analysis.recommendation == "BUY":
 **Status**: Production Ready ✅
 **API**: Real Polymarket integration (live Gamma/CLOB APIs); tests are layered — the offline tier uses hermetic fakes (see TESTING.md)
 **Tests**: Comprehensive coverage
+
+
+### Combo Discovery (4 tools) — BrickHouse addition
+
+Read-only tools for official Polymarket Combos, built on the **public**
+Combo catalog (`combos-rfq-api.polymarket.com`). No credentials are read
+or required, and there is no quote, order, or RFQ-submission path in this
+family: catalog outcome prices are market data, **not** executable Combo
+quotes (executable prices require the authenticated RFQ process).
+
+| Tool | Purpose |
+| ---- | ------- |
+| `get_combo_markets` | List Combo-eligible markets with cursor pagination; each market includes its leg position IDs |
+| `get_combo_market_details` | Find one catalog market by market id, condition id, or leg position id, with its identified legs |
+| `validate_combo_legs` | Validate a proposed leg set locally: 2–50 legs, all in the catalog, no duplicates, no two legs from the same market |
+| `analyze_combo` | Catalog-only pricing analysis: leg prices and their implied combined price (not a quote) |

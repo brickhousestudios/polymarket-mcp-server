@@ -743,7 +743,7 @@ async def test_initialize_server_read_only_mode_without_credentials(monkeypatch,
     assert "Continuing in READ-ONLY mode" in messages
     assert "Mode: READ-ONLY (no API credentials)" in messages
     assert (
-        "Available tools: 25 total (8 Discovery, 10 Analysis, 7 Real-time)" in messages
+        "Available tools: 29 total (8 Discovery, 10 Analysis, 7 Real-time, 4 Combo)" in messages
     )
     assert (
         "Trading tools NOT initialized (no API credentials - read-only mode)" in messages
@@ -822,8 +822,8 @@ async def test_initialize_server_credential_creation_success_initializes_trading
     )
     assert "Mode: FULL (authenticated)" in messages
     assert (
-        "Available tools: 45 total (8 Discovery, 10 Analysis, "
-        "12 Trading, 8 Portfolio, 7 Real-time)" in messages
+        "Available tools: 49 total (8 Discovery, 10 Analysis, "
+        "12 Trading, 8 Portfolio, 7 Real-time, 4 Combo)" in messages
     )
 
 

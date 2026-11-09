@@ -8,7 +8,7 @@
 
 **Complete AI-Powered Trading Platform for Polymarket Prediction Markets**
 
-Enable Claude to autonomously trade, analyze, and manage positions on Polymarket with 45 comprehensive tools, real-time WebSocket monitoring, and enterprise-grade safety features.
+Enable Claude to autonomously trade, analyze, and manage positions on Polymarket with 49 comprehensive tools, real-time WebSocket monitoring, and enterprise-grade safety features.
 
 ---
 
@@ -288,7 +288,7 @@ Add to your Claude Desktop configuration file:
 - **[Demo Video Script](DEMO_VIDEO_SCRIPT.md)** - Video tutorial scripts
 
 ### Developer Resources
-- **[Tools Reference](TOOLS_REFERENCE.md)** - Complete API documentation for all 45 tools
+- **[Tools Reference](TOOLS_REFERENCE.md)** - Complete API documentation for all 49 tools
 - **[Agent Integration Guide](AGENT_INTEGRATION_GUIDE.md)** - How to integrate with your agents
 - **[Trading Architecture](TRADING_ARCHITECTURE.md)** - System design and architecture
 - **[WebSocket Integration](WEBSOCKET_INTEGRATION.md)** - Real-time data setup
@@ -472,7 +472,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on:
 ## 📊 Project Stats
 
 - **Lines of Code**: ~10,000+ (Python)
-- **Tools**: 45 comprehensive tools
+- **Tools**: 49 comprehensive tools
 - **Test Coverage**: High (real API integration)
 - **Documentation**: Comprehensive (multiple guides)
 - **Dependencies**: Modern Python packages (MCP, httpx, websockets, eth-account)
@@ -552,7 +552,7 @@ The authors and contributors are not responsible for any financial losses incurr
 ## 📈 Roadmap
 
 ### Current Version (v0.1.0)
-- ✅ 45 comprehensive tools
+- ✅ 49 comprehensive tools
 - ✅ Real-time WebSocket monitoring
 - ✅ Safety limits and risk management
 - ✅ Complete test suite

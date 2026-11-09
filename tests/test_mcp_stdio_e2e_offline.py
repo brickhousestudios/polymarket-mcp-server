@@ -79,6 +79,7 @@ from pathlib import Path
 import pytest
 
 import polymarket_mcp
+import polymarket_mcp.tools.combo as combo
 import polymarket_mcp.tools.market_analysis as market_analysis
 import polymarket_mcp.tools.market_discovery as market_discovery
 import polymarket_mcp.tools.portfolio_integration as portfolio_integration
@@ -185,6 +186,7 @@ def _derivable_public_names() -> set[str]:
         _tool_names(market_discovery.get_tools)
         | _tool_names(market_analysis.get_tools)
         | _tool_names(realtime.get_tools)
+        | _tool_names(combo.get_tools)
     )
 
 

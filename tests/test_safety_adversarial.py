@@ -54,6 +54,7 @@ from pydantic import ValidationError
 
 import polymarket_mcp.config as config_module
 import polymarket_mcp.server as server_module
+import polymarket_mcp.tools.combo as combo
 import polymarket_mcp.tools.trading as trading_module
 import polymarket_mcp.utils.rate_limiter as rate_limiter_module
 import polymarket_mcp.utils.safety_limits as safety_limits_module
@@ -558,8 +559,9 @@ async def test_list_tools_preauth_excludes_trading_and_portfolio():
         tool.name for tool in market_discovery.get_tools()
     } | {tool.name for tool in market_analysis.get_tools()}
     public |= {tool.name for tool in realtime.get_tools()}
-    assert names == public, "pre-auth surface must be exactly discovery+analysis+realtime"
-    assert len(names) == 25, "server.py:439 claims '25 total (8 Discovery, 10 Analysis, 7 Real-time)'"
+    public |= {tool.name for tool in combo.get_tools()}
+    assert names == public, "pre-auth surface must be exactly discovery+analysis+realtime+combo"
+    assert len(names) == 29, "server.py claims '29 total (8 Discovery, 10 Analysis, 7 Real-time, 4 Combo)'"
 
 
 def test_readme_tool_count_claim_matches_definitions():
@@ -575,8 +577,9 @@ def test_readme_tool_count_claim_matches_definitions():
         "realtime": len(realtime.get_tools()),
     }
 
-    assert counts == {"discovery": 8, "analysis": 10, "trading": 12, "portfolio": 8, "realtime": 7}
-    assert sum(counts.values()) == 45
+    counts["combo"] = len(combo.get_tools())
+    assert counts == {"discovery": 8, "analysis": 10, "trading": 12, "portfolio": 8, "realtime": 7, "combo": 4}
+    assert sum(counts.values()) == 49
 
 
 def test_all_defined_tools_are_routed():
